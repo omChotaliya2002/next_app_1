@@ -1,14 +1,10 @@
 import React from 'react';
 
 interface ProductPageProps {
-
-  params : {
     productid : string;
-  }
+  };
 
-}
-
-const page = ({params} : ProductPageProps) => {
+const page = (params : ProductPageProps) => {
 
 
   return (

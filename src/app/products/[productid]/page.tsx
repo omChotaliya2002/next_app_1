@@ -1,13 +1,10 @@
 import React from 'react';
-import { useState } from 'react';
 
 interface ProductPageProps {
     productid : string;
   };
 
 const Page = (params : ProductPageProps) => {
-
-  const [first, setfirst] = useState("");
 
   return (
 

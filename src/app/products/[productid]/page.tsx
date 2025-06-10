@@ -1,15 +1,17 @@
 import React from 'react';
 
 interface ProductPageProps {
-  params : {
-    productid : Promise<string>;
-  }
+  params : Promise<{
+      productid : string;
+  }>
 };
 
 
 const Page = async ({params} : ProductPageProps) => {
 
-  const productid = await params.productid;
+  const resolveParams = await params;
+  const productid = resolveParams.productid;
+
 
   return (
 

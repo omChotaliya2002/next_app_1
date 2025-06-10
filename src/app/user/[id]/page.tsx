@@ -1,20 +1,15 @@
 "use client";  // added this directive because react hooks only work in client component👍
 
-// import { useParams } from "next/navigation";
+interface userProps {
+    params : Promise<{
+        id : string;
+    }>
+}
 
-// export default function UserProfile() {
-//   const params = useParams(); // Get dynamic params
+export default async function UserProfile({ params } : userProps) {
 
-//   return (
-//     <div className="select-none">
-//       <h1>User Profile</h1>
-//       <p>User ID: {params.id}</p>
-//     </div>
-//   );
-// }
-
-
-export default function UserProfile({ params }: { params: { id: unknown }}) {
+    const resolveParams = await params;
+    const userid = resolveParams.id;
     
     // function to check if id is string or not for unknown data type : 
 
@@ -22,7 +17,7 @@ export default function UserProfile({ params }: { params: { id: unknown }}) {
             return typeof value === "string";
     }
 
-    if(isString(params.id)){
-        return <h1 className="flex items-center justify-center mt-[10%] text-2xl select-none"> User ID: {params.id} </h1>;
+    if(isString(userid)){
+        return <h1 className="flex items-center justify-center mt-[10%] text-2xl select-none"> User ID: {userid} </h1>;
     } 
   } 

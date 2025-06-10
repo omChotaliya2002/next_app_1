@@ -1,11 +1,13 @@
 import React from 'react';
+import { useState } from 'react';
 
 interface ProductPageProps {
     productid : string;
   };
 
-const page = (params : ProductPageProps) => {
+const Page = (params : ProductPageProps) => {
 
+  const [first, setfirst] = useState("");
 
   return (
 
@@ -20,4 +22,4 @@ const page = (params : ProductPageProps) => {
   )
 }
 
-export default page;
+export default Page;

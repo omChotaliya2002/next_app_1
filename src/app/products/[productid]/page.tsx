@@ -1,6 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-const page = ({params} : {params :{productid : string}}) => {
+interface ProductPageProps {
+
+  params : {
+    productid : string;
+  }
+
+}
+
+const page = ({params} : ProductPageProps) => {
 
 
   return (

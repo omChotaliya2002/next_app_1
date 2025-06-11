@@ -3,7 +3,9 @@
 import { useEffect, useRef } from 'react'
 
 export default function Component() {
+
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -24,6 +26,15 @@ export default function Component() {
       const rows = Math.ceil(canvas.height / gridSize)
       const cols = Math.ceil(canvas.width / gridSize)
 
+      const colors = [                                  // colors of wave 👍👍
+            "rgba(0,255,248,0.5",    // sky blue
+            "rgba(0,255,0,0.5)",      // green
+            "rgba(241,255,0,0.5)",    // yellow
+            "rgba(191,0,255,0.5)",    // purple
+          ]
+
+        const color = colors[Math.floor(time * 0.18) % colors.length];   //👈 One color per wave
+
       for (let y = 0; y < rows; y++) {
         for (let x = 0; x < cols; x++) {
           const centerX = x * gridSize
@@ -41,9 +52,10 @@ export default function Component() {
           const waveOffset = Math.sin(normalizedDistance * 10 - time) * 0.5 + 0.5
           const size = gridSize * waveOffset * 0.8
 
+
           ctx.beginPath()
-          ctx.arc(centerX, centerY, size / 2, 0, Math.PI * 2)
-          ctx.fillStyle = `rgba(0, 255, 248, ${waveOffset * 0.5})`
+          ctx.arc(centerX, centerY, size / 2.5, 0, Math.PI * 2)
+          ctx.fillStyle = color;
           ctx.fill()
         }
       }
@@ -55,7 +67,7 @@ export default function Component() {
 
       drawHalftoneWave()
 
-      time += 0.12
+      time += 0.08                    // waves wave time.. 👍👍
       animationFrameId = requestAnimationFrame(animate)
     }
 

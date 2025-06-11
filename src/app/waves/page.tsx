@@ -27,13 +27,31 @@ export default function Component() {
       const cols = Math.ceil(canvas.width / gridSize)
 
       const colors = [                                  // colors of wave 👍👍
-            "rgba(0,255,248,0.5",    // sky blue
+            "rgba(0,255,248,0.5)",    // sky blue
             "rgba(0,255,0,0.5)",      // green
             "rgba(241,255,0,0.5)",    // yellow
             "rgba(191,0,255,0.5)",    // purple
           ]
 
-        const color = colors[Math.floor(time * 0.18) % colors.length];   //👈 One color per wave
+          // HELPER THAT BLEND BETWEEN TWO COLORS BASED ON VALUE t FROM 0 -> 1 : 📌📌📌
+          function lerpColor(color1 : string, color2 : string, t : number) : string {
+
+              const extract = (c : string) => c.match(/\d+\.?\d*/g)!.map(Number);
+              const [r1,g1,b1,a1] = extract(color1);
+              const [r2,g2,b2,a2] = extract(color2);
+
+              const r = r1 + (r2 - r1) * t;
+              const g = g1 + (g2 - g1) * t;
+              const b = b1 + (b2 - b1) * t;
+              const a = a1 + (a2 - a1) * t;
+
+              return `rgba(${r},${g},${b},${a})`;
+          }
+          
+        const colorIndex = Math.floor(time * 0.05) % colors.length;
+        const nextColorIndex = (colorIndex + 1) % colors.length;
+        const t = (time * 0.05) % 1;
+        const color = lerpColor(colors[colorIndex], colors[nextColorIndex], t);   //👈 One color per wave
 
       for (let y = 0; y < rows; y++) {
         for (let x = 0; x < cols; x++) {

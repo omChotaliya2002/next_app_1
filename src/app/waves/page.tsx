@@ -33,7 +33,7 @@ export default function Component() {
             "rgba(191,0,255,0.5)",    // purple
           ]
 
-          // HELPER THAT BLEND BETWEEN TWO COLORS BASED ON VALUE t FROM 0 -> 1 : 📌📌📌
+          // HELPER THAT BLEND BETWEEN TWO COLORS BASED ON VALUE t FROM 0 -> 1 :💥📌💥
           function lerpColor(color1 : string, color2 : string, t : number) : string {
 
               const extract = (c : string) => c.match(/\d+\.?\d*/g)!.map(Number);
@@ -68,7 +68,7 @@ export default function Component() {
           const normalizedDistance = distanceFromCenter / maxDistance
           
           const waveOffset = Math.sin(normalizedDistance * 10 - time) * 0.5 + 0.5
-          const size = gridSize * waveOffset * 0.8
+          const size = gridSize * waveOffset * 0.6        // size of circles in the wave📌
 
 
           ctx.beginPath()
@@ -85,7 +85,7 @@ export default function Component() {
 
       drawHalftoneWave()
 
-      time += 0.08                    // waves wave time.. 👍👍
+      time += 0.15                    // waves wave time.. 👍👍
       animationFrameId = requestAnimationFrame(animate)
     }
 
